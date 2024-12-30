@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta name="description" content="Boost your social media game with free followers. Share with friends and enjoy rewards!">
-<meta name="keywords" content="social media, free followers, WhatsApp, Telegram, share link">
-
+  <meta name="keywords" content="social media, free followers, WhatsApp, Telegram, share link">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Get social 10k followers in no time</title>
@@ -26,19 +25,36 @@
     .task-btn:hover {
       background-color: #0056b3;
     }
+    .progress-container {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 20px;
+      width: 0%;
+      background-color: #28a745;
+      transition: width 0.4s ease;
+    }
   </style>
 </head>
 <body>
-  <h1>Bost your profile to Atomaticial Get 10k followers all platforoms</h1>
+  <h1>Boost your profile to Automatically Get 10k Followers</h1>
   <p>Enter your social profile URL to start:</p>
   <input type="text" id="profileUrl" placeholder="Enter your profile link" />
   <button id="startBtn" class="task-btn">Get 10K followers</button>
 
   <div id="taskSection" style="display:none;">
-    <h2>Please Do some short tasks to speed up the process</h2>
-    <button class="task-btn" onclick="redirectToTask('https://www.lnkmeup.com/list/52342')">Do a small task</button>
-    <button class="task-btn" onclick="redirectToTask('https://www.modcraftforge.com/minecraft/ambush-padoru?pub=3216919')">Download secret App</button>
-    <button class="task-btn" onclick="redirectToTask('sha.html')">Share on Social Platforms</button>
+    <h2>Please complete the tasks to speed up the process</h2>
+    <button class="task-btn" onclick="completeTask(1, 'https://www.lnkmeup.com/list/52342')">Do a small task</button>
+    <button class="task-btn" onclick="completeTask(2, 'https://www.modcraftforge.com/minecraft/ambush-padoru?pub=3216919')">Download secret App</button>
+    <button class="task-btn" onclick="completeTask(3, 'sha.html')">Share on Social Platforms</button>
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+    <p id="progressText">0% Complete</p>
   </div>
 
   <div id="resultSection" style="display:none;">
@@ -50,6 +66,11 @@
     const startBtn = document.getElementById('startBtn');
     const taskSection = document.getElementById('taskSection');
     const resultSection = document.getElementById('resultSection');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+
+    let tasksCompleted = 0;
+    const totalTasks = 3;
 
     startBtn.addEventListener('click', () => {
       const profileUrl = document.getElementById('profileUrl').value;
@@ -60,10 +81,22 @@
       taskSection.style.display = 'block';
     });
 
-    function redirectToTask(url) {
+    function completeTask(taskId, url) {
       window.open(url, '_blank'); // Opens the task in a new tab
-      // Log task completion (backend implementation needed)
       alert('Task opened! Complete it and return.');
+      tasksCompleted++;
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const progress = (tasksCompleted / totalTasks) * 100;
+      progressBar.style.width = progress + '%';
+      progressText.textContent = `${Math.round(progress)}% Complete`;
+
+      if (tasksCompleted === totalTasks) {
+        taskSection.style.display = 'none';
+        resultSection.style.display = 'block';
+      }
     }
   </script>
 </body>
